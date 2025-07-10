@@ -32,6 +32,10 @@ type Claims struct {
 	jwt.RegisteredClaims
 }
 
+func NewUserService(repository repositories.IRepositoryRegistry) IUserService {
+	return &UserService{repository: repository}
+}
+
 func (u *UserService) Login(ctx context.Context, req *dto.LoginRequest) (*dto.LoginResponse, error) {
 	user, err := u.repository.GetUser().FindByUsername(ctx, req.Username)
 	if err != nil {
@@ -210,6 +214,41 @@ func (u *UserService) Update(ctx context.Context, request *dto.UpdateRequest, uu
 		Username:    userResult.Username,
 		PhoneNumber: userResult.PhoneNumber,
 		Email:       userResult.Email,
+	}
+
+	return &data, nil
+}
+
+func (u *UserService) GetUserLogin(ctx context.Context) (*dto.UserResponse, error) {
+	var (
+		userLogin = ctx.Value(constants.UserLogin).(*dto.UserResponse)
+		data      dto.UserResponse
+	)
+
+	data = dto.UserResponse{
+		UUID:        userLogin.UUID,
+		Name:        userLogin.Name,
+		Username:    userLogin.Username,
+		PhoneNumber: userLogin.PhoneNumber,
+		Email:       userLogin.Email,
+		Role:        userLogin.Role,
+	}
+
+	return &data, nil
+}
+
+func (u *UserService) GetUserByUUID(ctx context.Context, uuid string) (*dto.UserResponse, error) {
+	user, err := u.repository.GetUser().FindByUUID(ctx, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	data := dto.UserResponse{
+		UUID:        user.UUID,
+		Name:        user.Name,
+		Username:    user.Username,
+		PhoneNumber: user.PhoneNumber,
+		Email:       user.Email,
 	}
 
 	return &data, nil
