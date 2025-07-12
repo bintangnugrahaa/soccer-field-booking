@@ -2,7 +2,11 @@ name: soccer-field-booking
 services:
   user-service:
     container_name: user-service
-    image: bintangnugraha/user-service:17
+    platform: windows/amd64
+    # image: bintangnugraha/user-service:1
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "8001:8001"
     env_file:
