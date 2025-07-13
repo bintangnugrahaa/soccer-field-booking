@@ -1,0 +1,9 @@
+name: soccer-field-booking
+services:
+  user-service:
+    container_name: user-service
+    image: bintangnugraha/user-service:1
+    ports:
+      - "8001:8001"
+    env_file:
+      - .env

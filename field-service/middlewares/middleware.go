@@ -10,13 +10,12 @@ import (
 	"field-service/constants"
 	errConstant "field-service/constants/error"
 	"fmt"
-	"net/http"
-	"strings"
-
 	"github.com/didip/tollbooth"
 	"github.com/didip/tollbooth/limiter"
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
+	"net/http"
+	"strings"
 )
 
 func HandlePanic() gin.HandlerFunc {

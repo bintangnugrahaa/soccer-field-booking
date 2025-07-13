@@ -9,8 +9,6 @@ import (
 	"fmt"
 	"net/http"
 	"time"
-
-	"github.com/parnurzeal/gorequest"
 )
 
 type UserClient struct {
@@ -37,7 +35,7 @@ func (u *UserClient) GetUserByToken(ctx context.Context) (*UserData, error) {
 	bearerToken := fmt.Sprintf("Bearer %s", token)
 
 	var response UserResponse
-	request := gorequest.New().
+	request := u.client.Client().Clone().
 		Set(constants.Authorization, bearerToken).
 		Set(constants.XServiceName, config2.Config.AppName).
 		Set(constants.XApiKey, apiKey).

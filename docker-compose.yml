@@ -1,14 +1,14 @@
 services:
   zookeeper:
-    image: confluentinc/cp-zookeeper:7.4.6
-    hostname: zookeeper
-    container_name: zookeeper
-    ports:
+   image: confluentinc/cp-zookeeper:7.4.6
+   hostname: zookeeper
+   container_name: zookeeper
+   ports:
       - "2181:2181"
-    environment:
-      ZOOKEEPER_CLIENT_PORT: 2181
-      ZOOKEEPER_SERVER_ID: 1
-      ZOOKEEPER_SERVERS: zookeeper:2888:3888
+   environment:
+    ZOOKEEPER_CLIENT_PORT: 2181
+    ZOOKEEPER_SERVER_ID: 1
+    ZOOKEEPER_SERVERS: zookeeper:2888:3888
 
   kafka:
     image: confluentinc/cp-kafka:7.4.6
@@ -18,7 +18,7 @@ services:
       - "9092:9092"
       - "29092:29092"
       - "29093:29093"
-    environment:
+    environment:      
       KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:19092,EXTERNAL://${DOCKER_HOST_IP:-127.0.0.1}:9092,DOCKER://host.docker.internal:29092
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT,DOCKER:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
@@ -46,39 +46,25 @@ services:
       - KAFKA_CLUSTERS_0_ZOOKEEPER_CONNECT=zookeeper:2181
 
   postgres:
-    container_name: postgres
-    image: postgres:latest
-    environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: barca1899
-      POSTGRES_DB: user_service
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgresql:/var/lib/postgresql
-      - postgresql_data:/var/lib/postgresql/data
-
+   container_name: postgres
+   image: postgres:latest
+   environment:
+     POSTGRES_USER: root
+     POSTGRES_PASSWORD: barca1899
+   ports:
+     - "5432:5432" 
+   volumes:
+     - postgresql:/var/lib/postgresql
+     - postgresql_data:/var/lib/postgresql/data
+     
   pgadmin:
-    container_name: pgadmin
-    image: dpage/pgadmin4:latest
-    environment:
-      PGADMIN_DEFAULT_EMAIL: admin@pgadmin.com
-      PGADMIN_DEFAULT_PASSWORD: admin
-    ports:
-      - "5050:80"
-
-  user-service:
-    build:
-      context: ./user-service
-      dockerfile: Dockerfile
-    container_name: user-service
-    ports:
-      - "8001:8001"
-    env_file:
-      - ./user-service/.env
-    depends_on:
-      - postgres
-      - kafka
+   container_name: pgadmin
+   image: dpage/pgadmin4:latest
+   environment:
+     PGADMIN_DEFAULT_EMAIL: admin@pgadmin.com
+     PGADMIN_DEFAULT_PASSWORD: admin
+   ports:
+     - "5050:80"   
 
 networks:
   host:
@@ -88,3 +74,5 @@ networks:
 volumes:
   postgresql:
   postgresql_data:
+
+
