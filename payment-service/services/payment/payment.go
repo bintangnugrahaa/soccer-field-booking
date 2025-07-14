@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"gorm.io/gorm"
 	"math/rand"
 	"os"
 	clients "payment-service/clients/midtrans"
@@ -20,6 +19,8 @@ import (
 	"payment-service/repositories"
 	"strings"
 	"time"
+
+	"gorm.io/gorm"
 )
 
 type PaymentService struct {

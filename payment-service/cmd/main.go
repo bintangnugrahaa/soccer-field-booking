@@ -10,7 +10,7 @@ import (
 	"payment-service/common/response"
 	"payment-service/config"
 	"payment-service/constants"
-	"payment-service/controllers/http"
+	controllers "payment-service/controllers/http"
 	kafkaClient "payment-service/controllers/kafka"
 	"payment-service/domain/models"
 	"payment-service/middlewares"
