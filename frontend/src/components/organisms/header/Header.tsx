@@ -34,7 +34,7 @@ export default function Header(props: HeaderProps) {
         <div className="container">
           <div className="site-navigation">
             <Link href="/" className="logo m-0">
-              Mini Soccer <span className="text-primary">.</span>
+              Star Mini Soccer <span className="text-primary">.</span>
             </Link>
             <ul className="js-clone-nav d-none d-lg-inline-block text-left site-menu float-right">
               {currentPath === "/" ? (

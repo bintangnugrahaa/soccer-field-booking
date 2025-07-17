@@ -121,6 +121,7 @@ export default function Footer() {
                     href="https://github.com/bintangnugrahaa"
                     className="link-highlight"
                   >
+                    {" "}
                     Muhammad Bintang Nugraha
                   </a>
                 </p>

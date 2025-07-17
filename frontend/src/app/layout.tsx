@@ -25,7 +25,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Home Page | Mini Soccer",
+  title: "Home Page | Star Mini Soccer",
   icons: "/images/star-icon.svg",
 };
 

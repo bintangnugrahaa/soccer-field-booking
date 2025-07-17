@@ -85,7 +85,7 @@ export default function FieldList() {
                       <div className="meta-wrapper-fieldlist">
                         <h3 className="poppins-semibold">{field.name}</h3>
                         <span className="poppins-medium">
-                          {field.pricePerHour}
+                          {Number(field.pricePerHour).toLocaleString("id-ID")}
                         </span>
                       </div>
                     </Link>
